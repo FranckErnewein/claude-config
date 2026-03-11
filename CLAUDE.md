@@ -19,7 +19,7 @@
 When I ask you to enter "zergling mode" with a Linear ticket reference, follow this process:
 
 1. **Read** the Linear ticket to understand the requirements. Also read the associated project and related tickets to gather context. Ask questions if anything is unclear.
-2. **Branch**: create a branch named `<type>/<ticket-id>-<short-description>` (e.g. `feat/DSP-123-add-filter`).
+2. **Branch**: checkout `staging`, pull latest, then create a branch named `<type>/<ticket-id>-<short-description>` (e.g. `feat/DSP-123-add-filter`).
 3. **Implement** the feature/fix, committing with conventional commits including the ticket ref. **NEVER** implement features from other tickets — if a dependency on another ticket's work is needed, use placeholders or stubs instead.
 4. **Push** the branch and open a **draft PR**.
 5. **CI check**: monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
