@@ -38,7 +38,7 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 7. **End-to-end testing** and **CI check** (in parallel):
     - **CI**: use `gh pr checks --watch` to monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
     - **Browser**: if the PR has a test checklist, use Playwright to test each item against the running dev app. Navigate, click, inspect the DOM, and verify expected behavior. Check off each checklist item in the PR description as it passes. Take screenshots of the main screens during testing. Report any failures.
-    - **API endpoints**: if the feature adds new endpoints, test them with `curl` against the local dev server. For endpoints under `/api/internal`, add the header `x-api-key: dev`.
+    - **API endpoints**: if the feature adds new endpoints, test them with `curl` against the local dev server. For endpoints under `/api/internal`, add the header `x-api-key: dev`. Check off each checklist item in the PR description as it passes. Report any failures.
 8. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
 9. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received. Resolve comments once addressed or if they are inconsistent. If there is feedback, address it, amend the commit, force push, and wait another 15 minutes for further comments. Repeat until no new feedback is received within a 15-minute window.
 10. **Merge**: once no more feedback comes in, merge the branch into `staging` locally, bypassing branch protection rules, and push `staging` to the remote.
@@ -46,7 +46,7 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 12. **Deploy watch**: use `gh run watch` to monitor only the Docker build on `staging` CI. Then use `kubectl` to watch the `back-office` service pods until the new version is fully rolled out.
 13. **DB migration**: if the PR includes a Postgres migration, run `pnpm db:migrate:staging` to apply it once the deploy is complete.
 14. **Announce**: post a message on Slack in `#project-back-office` announcing the new version is live on staging. Include:
-    - A link to the new feature (`bo.staging.vibe.co/[...]`)
+    - A clickable link to the new feature (`https://bo.staging.vibe.co/[...]`)
     - A link to the GitHub PR
     - A link to the Linear issue
     - Post the Playwright screenshots in a thread on this message.
