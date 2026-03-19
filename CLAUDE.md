@@ -29,7 +29,18 @@ When I ask you to enter "zergling mode" with a Linear ticket reference, follow t
 5. **CI check**: monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
 6. **Browser test**: if the PR has a test checklist, use Playwright to test each item against the running dev app. Navigate, click, inspect the DOM, and verify expected behavior. Check off each checklist item in the PR description as it passes. Report any failures.
 7. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
-8. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received.
+8. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received. If there is feedback, address it, amend the commit, force push, and wait another 15 minutes for further comments. Repeat until no new feedback is received within a 15-minute window.
+9. **Merge**: once no more feedback comes in, merge the branch into `staging`.
+10. **Deploy watch**: monitor CI on `staging`. Then use `kubectl` to watch the `back-office` service pods until the new version is fully rolled out.
+11. **Announce**: once deployed, post a message on Slack in `#project-back-office` announcing the new version is live on staging. Include:
+    - A link to the new feature (`bo.staging.vibe.co/[...]`)
+    - A link to the GitHub PR
+    - A link to the Linear issue
+    - Ask for feedback in thread on this message.
+12. **Post-deploy monitoring** (30 minutes, in parallel):
+    - **Logs**: watch `kubectl` logs for the `back-office` pods. If an error is detected, create a new branch from `staging` and open a fix PR.
+    - **Slack feedback**: monitor the thread on the Slack announcement message. If pertinent feedback is received, create a new branch from `staging` and open an improvement PR.
+
 ## Git
 
 - Use conventional commits. Include the Linear ticket reference at the end of the title (e.g. `feat: add segment filter [DSP-123]`).
