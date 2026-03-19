@@ -35,12 +35,13 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 11. **Merge**: once no more feedback comes in, merge the branch into `staging` and push `staging` to the remote.
 12. **Stop dev server**: stop the local dev server started in step 5.
 13. **Deploy watch**: monitor CI on `staging`. Then use `kubectl` to watch the `back-office` service pods until the new version is fully rolled out.
-14. **Announce**: once deployed, post a message on Slack in `#project-back-office` announcing the new version is live on staging. Include:
+14. **DB migration**: once the deploy is complete, run `pnpm db:migrate:staging` to apply pending Postgres migrations.
+15. **Announce**: post a message on Slack in `#project-back-office` announcing the new version is live on staging. Include:
     - A link to the new feature (`bo.staging.vibe.co/[...]`)
     - A link to the GitHub PR
     - A link to the Linear issue
     - Ask for feedback in thread on this message.
-15. **Post-deploy monitoring** (30 minutes, in parallel):
+16. **Post-deploy monitoring** (30 minutes, in parallel):
     - **Logs**: watch `kubectl` logs for the `back-office` pods. If an error is detected, create a new branch from `staging` and open a fix PR.
     - **Slack feedback**: monitor the thread on the Slack announcement message. If pertinent feedback is received, create a new branch from `staging` and open an improvement PR.
 
