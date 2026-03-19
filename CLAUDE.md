@@ -34,7 +34,7 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
     - **API endpoints**: if the feature adds new endpoints, test them with `curl` against the local dev server. For endpoints under `/api/internal`, add the header `x-api-key: dev`.
 8. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
 9. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received. Resolve comments once addressed or if they are inconsistent. If there is feedback, address it, amend the commit, force push, and wait another 15 minutes for further comments. Repeat until no new feedback is received within a 15-minute window.
-10. **Merge**: once no more feedback comes in, merge the branch into `staging` and push `staging` to the remote.
+10. **Merge**: once no more feedback comes in, merge the branch into `staging` locally, bypassing branch protection rules, and push `staging` to the remote.
 11. **Stop dev server**: stop the local dev server started in step 5.
 12. **Deploy watch**: use `gh run watch` to monitor only the Docker build on `staging` CI. Then use `kubectl` to watch the `back-office` service pods until the new version is fully rolled out.
 13. **DB migration**: once the deploy is complete, run `pnpm db:migrate:staging` to apply pending Postgres migrations.
