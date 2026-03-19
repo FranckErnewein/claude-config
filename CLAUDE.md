@@ -30,6 +30,7 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 6. **End-to-end testing**:
     - **Browser**: if the PR has a test checklist, use Playwright to test each item against the running dev app. Navigate, click, inspect the DOM, and verify expected behavior. Check off each checklist item in the PR description as it passes. Report any failures.
     - **API endpoints**: if the feature adds new endpoints, test them with `curl` against the local dev server. For endpoints under `/api/internal`, add the header `x-api-key: dev`.
+    - **Screenshots**: during testing, take screenshots of the main screens with Playwright and attach them to the PR description.
 7. **Push** the branch and open a **draft PR**.
 8. **CI check**: monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
 9. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
