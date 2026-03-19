@@ -27,9 +27,9 @@ When I ask you to enter "zergling mode" with a Linear ticket reference, follow t
 3. **Implement** the feature/fix, committing with conventional commits including the ticket ref. **NEVER** implement features from other tickets — if a dependency on another ticket's work is needed, use placeholders or stubs instead.
 4. **Push** the branch and open a **draft PR**.
 5. **CI check**: monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
-6. **Ready for review**: once CI passes, mark the PR as ready for review.
-7. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received. If you have a doubt on a comment, send me a DM on Slack.
-
+6. **Browser test**: if the PR has a test checklist, use Playwright to test each item against the running dev app. Navigate, click, inspect the DOM, and verify expected behavior. Check off each checklist item in the PR description as it passes. Report any failures.
+7. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
+8. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received.
 ## Git
 
 - Use conventional commits. Include the Linear ticket reference at the end of the title (e.g. `feat: add segment filter [DSP-123]`).
