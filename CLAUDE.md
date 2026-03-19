@@ -26,19 +26,21 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 2. **Branch**: checkout `staging`, pull latest, then create a branch named `<type>/back-office/<ticket-id>/<short-description>` (e.g. `feat/back-office/DSP-123/add-filter`).
 3. **Implement** the feature/fix, committing with conventional commits including the ticket ref. **NEVER** implement features from other tickets — if a dependency on another ticket's work is needed, use placeholders or stubs instead.
 4. **Local CI**: run `pnpm run ci`. If it fails, fix the issues and re-run. Iterate until the command passes.
-5. **Browser test**: if the PR has a test checklist, use Playwright to test each item against the running dev app. Navigate, click, inspect the DOM, and verify expected behavior. Check off each checklist item in the PR description as it passes. Report any failures.
-6. **Push** the branch and open a **draft PR**.
-7. **CI check**: monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
-8. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
-9. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received. If there is feedback, address it, amend the commit, force push, and wait another 15 minutes for further comments. Repeat until no new feedback is received within a 15-minute window.
-10. **Merge**: once no more feedback comes in, merge the branch into `staging`.
-11. **Deploy watch**: monitor CI on `staging`. Then use `kubectl` to watch the `back-office` service pods until the new version is fully rolled out.
-12. **Announce**: once deployed, post a message on Slack in `#project-back-office` announcing the new version is live on staging. Include:
+5. **Start dev server**: run `pnpm dev` in the background to start the local dev server. Monitor its logs for errors throughout the following steps.
+6. **Browser test**: if the PR has a test checklist, use Playwright to test each item against the running dev app. Navigate, click, inspect the DOM, and verify expected behavior. Check off each checklist item in the PR description as it passes. Report any failures.
+7. **Push** the branch and open a **draft PR**.
+8. **CI check**: monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
+9. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
+10. **PR feedback**: poll the PR for review comments every 2 minutes for 15 minutes. Handle any feedback received. If there is feedback, address it, amend the commit, force push, and wait another 15 minutes for further comments. Repeat until no new feedback is received within a 15-minute window.
+11. **Merge**: once no more feedback comes in, merge the branch into `staging` and push `staging` to the remote.
+12. **Stop dev server**: stop the local dev server started in step 5.
+13. **Deploy watch**: monitor CI on `staging`. Then use `kubectl` to watch the `back-office` service pods until the new version is fully rolled out.
+14. **Announce**: once deployed, post a message on Slack in `#project-back-office` announcing the new version is live on staging. Include:
     - A link to the new feature (`bo.staging.vibe.co/[...]`)
     - A link to the GitHub PR
     - A link to the Linear issue
     - Ask for feedback in thread on this message.
-13. **Post-deploy monitoring** (30 minutes, in parallel):
+15. **Post-deploy monitoring** (30 minutes, in parallel):
     - **Logs**: watch `kubectl` logs for the `back-office` pods. If an error is detected, create a new branch from `staging` and open a fix PR.
     - **Slack feedback**: monitor the thread on the Slack announcement message. If pertinent feedback is received, create a new branch from `staging` and open an improvement PR.
 
