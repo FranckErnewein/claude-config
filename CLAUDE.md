@@ -24,6 +24,11 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 
 > All `pnpm` commands must be run from the back-office app directory.
 
+**Required tools**: git, gh (GitHub CLI), pnpm, kubectl, Playwright, curl, Linear (MCP), Slack (MCP).
+
+> Playwright must be launched with `playwright-cli open --extension --headed` to reuse the user's Chrome session and cookies. The user should be logged in to the back-office (locally or on staging) before starting.
+> The user must be connected to the VPN.
+
 1. **Read** the Linear ticket to understand the requirements. Also read the associated project and related tickets to gather context. Ask questions if anything is unclear.
 2. **Branch**: checkout `staging`, pull latest, then create a branch named `<type>/back-office/<ticket-id>/<short-description>` (e.g. `feat/back-office/DSP-123/add-filter`).
 3. **Implement** the feature/fix, committing with conventional commits including the ticket ref. Use components from `@clear/ui` as much as possible. **NEVER** implement features from other tickets — if a dependency on another ticket's work is needed, use placeholders or stubs instead.
