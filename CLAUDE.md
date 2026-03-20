@@ -31,7 +31,12 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 
 1. **Read** the Linear ticket to understand the requirements. Also read the associated project and related tickets to gather context. Ask questions if anything is unclear.
 2. **Branch**: checkout `staging`, pull latest, then create a branch named `<type>/back-office/<ticket-id>/<short-description>` (e.g. `feat/back-office/DSP-123/add-filter`).
-3. **Implement** the feature/fix, committing with conventional commits including the ticket ref. Use components from `@clear/ui` as much as possible. **NEVER** implement features from other tickets — if a dependency on another ticket's work is needed, use placeholders or stubs instead.
+3. **Implement** the feature/fix:
+    - Commit with conventional commits including the ticket ref.
+    - Use components from `@clear/ui` as much as possible.
+    - Write unit tests for pure utility functions if the algorithm has edge cases or complexity.
+    - Environment config is in `/charts/back-office/config` for dev, staging, and prod. If modified, run `pnpm envfile` to regenerate env files.
+    - **NEVER** implement features from other tickets — if a dependency on another ticket's work is needed, use placeholders or stubs instead.
 4. **Local CI**: run `pnpm run ci`. If it fails, fix the issues and re-run. Iterate until the command passes.
 5. **Start dev server**: run `pnpm dev` in the background to start the local dev server. Monitor its logs for errors throughout the following steps.
 6. **Push** the branch and open a **draft PR**.
