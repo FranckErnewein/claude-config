@@ -43,7 +43,7 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 8. **End-to-end testing** and **CI check** (in parallel):
     - **CI**: use `gh pr checks --watch` to monitor the CI pipeline. If it fails, fix, amend the commit, and force push. Iterate until CI is green.
     - **Browser**: if the PR has a test checklist, use Playwright to test each item against the running dev app. Navigate, click, inspect the DOM, and verify expected behavior. Check off each checklist item in the PR description as it passes. Take screenshots of the main screens during testing. Report any failures.
-    - **API endpoints**: if the feature adds new endpoints, test them with `curl` against the local dev server. For endpoints under `/api/internal`, add the header `x-api-key: dev`. Check off each checklist item in the PR description as it passes. Report any failures.
+    - **API endpoints**: if the feature adds new endpoints, test them with `curl` against the local dev server. For endpoints under `/api/internal`. Check off each checklist item in the PR description as it passes. Report any failures.
 9. **Ready for review**: once CI passes and browser tests look good, mark the PR as ready for review.
 10. **PR feedback**: use `gh pr checks --watch` to wait for all CI checks to pass, including `Claude Code Review`. Once done, address all open review conversations on the PR. Fix the code when needed, amend the commit, and force push. Resolve conversations that are inconsistent. All conversations must be resolved before moving to the next step.
 11. **Merge**: once no more feedback comes in, merge the branch into `staging` locally, bypassing branch protection rules, and push `staging` to the remote.
