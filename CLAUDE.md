@@ -36,7 +36,6 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
     - Commit with conventional commits including the ticket ref.
     - Use components from `@clear/ui` as much as possible.
     - Write unit tests for pure utility functions if the algorithm has edge cases or complexity.
-    - Environment config is in `/charts/back-office/config` for dev, staging, and prod. If modified, run `pnpm envfile` to regenerate env files.
     - **NEVER** implement features from other tickets — if a dependency on another ticket's work is needed, use placeholders or stubs instead.
 5. **Local CI**: run `pnpm run ci`. If it fails, fix the issues and re-run. Iterate until the command passes.
 6. **Start dev server**: run `pnpm dev` in the background to start the local dev server. Monitor its logs for errors throughout the following steps.
