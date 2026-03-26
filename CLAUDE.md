@@ -52,7 +52,7 @@ When I ask you to enter "back-office-dev mode" with a Linear ticket reference, f
 13. **Deploy watch**: use `gh run watch` to monitor only the Docker build on `staging` CI. Then use `kubectl` to watch the `back-office` service pods until the new version is fully rolled out.
 14. **DB migration**: if the PR includes a Postgres migration, run `pnpm db:migrate:staging` to apply it once the deploy is complete.
 15. **Announce**: post a message on Slack in `#project-back-office` announcing the new version is live on staging. Include:
-    - A clickable link to the new feature (`https://bo.staging.vibe.co/[...]`)
+    - A clickable link to the new feature 
     - A link to the GitHub PR
     - A link to the Linear issue
     - Post the Playwright screenshots in a thread on this message.
